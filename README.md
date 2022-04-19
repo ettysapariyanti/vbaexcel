@@ -131,3 +131,34 @@ End Sub
 ```
 
 
+
+Source code awal untuk copy paste angka yg ada di dalam cell tanpa mengikutsertakan formulanya :
+
+```vba
+
+Private Sub CommandButton1_Click()
+
+' Copy paste angka yg ada formulanya dari C3 di sheet PWONCSV ke A2 di Sheet4
+
+Sheets("PWONCSV").Select
+
+Range("C3").Select
+
+Selection.Copy
+
+Sheets("Sheet4").Select
+
+Range("A2").Select
+
+Selection.PasteSpecial Paste:=xlPasteValues, operation:=xlNone, skipblanks:=False, Transpose:=False
+
+
+End Sub
+
+
+```
+
+
+
+
+
