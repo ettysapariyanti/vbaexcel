@@ -300,6 +300,86 @@ End Sub
 ```
 
 
+source code sementara untuk isi data harga saham, lengkap dengan tanggal, ticker, nama lengkap:
+
+```vba
+
+Private Sub CommandButton1_Click()
+
+
+Workbooks("MacroSaham.xlsm").Activate
+
+
+
+
+' Membuat Caption Cell Date
+
+Sheets("PWONRapi").Select
+
+Range("A1").Select
+
+ActiveCell.FormulaR1C1 = "Date"
+
+
+
+
+' Mengcopy data tanggal
+
+
+Sheets("PWONCSV").Select
+
+Range("A2:A758").Select
+
+Selection.Copy
+
+Sheets("PWONRapi").Select
+
+Range("A2").Select
+
+Selection.PasteSpecial Paste:=xlPasteValues, operation:=xlNone, skipblanks:=False, Transpose:=False
+
+Selection.NumberFormat = "m/d/yyyy"
+
+
+
+
+' Membuat Caption Cell Ticker
+
+Sheets("PWONRapi").Select
+
+Range("B1").Select
+
+ActiveCell.FormulaR1C1 = "Ticker"
+
+
+
+
+' Membuat data Ticker : PWON
+
+Sheets("PWONRapi").Select
+
+Range("B2").Select
+
+ActiveCell.FormulaR1C1 = "PWON"
+
+
+
+' Mengcopy paste tulisan PWON di cell yg sama, ke arah bawah
+
+Range("B2").Select
+
+Selection.AutoFill Destination:=Range("B2:B758"), Type:=xlFillDefault
+
+Range("B2:B758").Select
+
+
+
+End Sub
+
+```
+
+
+
 
 
 
