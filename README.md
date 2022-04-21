@@ -264,6 +264,32 @@ End Sub
 
 
 
+Membuat format tanggal di VBA :
+
+```vba
+
+Sub FormatTanggal1()
+'
+' FormatTanggal1 Macro
+'
+
+'
+    Application.CutCopyMode = False
+    Selection.NumberFormat = "m/d/yyyy"
+End Sub
+
+
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
