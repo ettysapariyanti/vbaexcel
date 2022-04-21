@@ -282,7 +282,22 @@ End Sub
 ```
 
 
+source code untuk tarik data ke bawah dengan tujuan copy paste di cell yg sama:
 
+```vba
+
+Sub copypastecell()
+'
+' copypastecell Macro
+'
+
+'
+    Selection.AutoFill Destination:=Range("B2:B758"), Type:=xlFillDefault
+    Range("B2:B758").Select
+End Sub
+
+
+```
 
 
 
