@@ -391,6 +391,42 @@ rumus menghapus titik dan angka setelahnya.
 
 
 
+Source Code untuk pengujian integer dan perubahan harga saham agar sesuai dengan kriteria integer:
+
+```vba
+
+Sub Halaman4()
+
+
+
+' Menyelesaikan masalah Pengecekan apakah angka bisa termasuk integer atau tidak
+
+Sheets("Sheet4").Select
+
+Range("B2").Select
+
+ActiveCell.Formula = "=Int(A2)=A2"
+
+Selection.AutoFill Destination:=ActiveCell.Range("A1:A4"), Type:=xlFillDefault
+
+
+
+' Melakukan pemurnian agar semua angka bisa sesuai dengan integer
+
+Sheets("Sheet4").Select
+
+Range("C2").Select
+
+ActiveCell.Formula = "=IF(B2=TRUE,A2,LEFT(A2,SEARCH(""."",A2)-1))"
+
+Selection.AutoFill Destination:=ActiveCell.Range("A1:A4"), Type:=xlFillDefault
+
+
+End Sub
+
+
+
+```
 
 
 
