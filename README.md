@@ -379,6 +379,14 @@ End Sub
 ```
 
 
+Rumus penting:
+
+=LEFT(A6,SEARCH(".",A6)-1)
+
+rumus menghapus titik dan angka setelahnya.
+
+
+
 
 
 
