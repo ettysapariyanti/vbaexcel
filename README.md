@@ -386,6 +386,9 @@ Rumus penting:
 rumus menghapus titik dan angka setelahnya.
 
 
+=IF(B2=TRUE,A2,LEFT(A2,SEARCH(""."",A2)-1))
+
+rumus untuk menentukan apakah perlu dilakukan penghapusan . (titik) dan angka setelah titik, atau cuma perlu menyamakan isi cell dengan cell sumber. agar semua harga sesuai dengan format Integer.
 
 
 
