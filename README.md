@@ -432,6 +432,72 @@ End Sub
 ```
 
 
+source code untuk mencoba melakukan 2 perintah yg berbeda menggunakan IF ... Else :
+
+```vba
+
+Sub CekInteger()
+
+'Membuat kolom untuk cek integer nilai Open
+
+Columns("C:C").Select
+
+Selection.Insert shift:=xlToLeft, copyorigin:=xlFormatFromLeftOrAbove
+
+Range("C1").Select
+
+ActiveCell.FormulaR1C1 = "Integer Open"
+
+
+
+' Melakukan pengecekan nilai integer dan menuliskan hasilnya di kolom Integer Open
+
+Range("C2").Select
+
+ActiveCell.Formula = "=Int(B2) = B2"
+
+Selection.AutoFill Destination:=ActiveCell.Range("A1:A4103"), Type:=xlFillDefault
+
+
+
+' Membuat kolom hasil akhir copy paste data Open1
+
+Columns("D:D").Select
+
+Selection.Insert shift:=xlToLeft, copyorigin:=xlFormatFromLeftOrAbove
+
+Range("D1").Select
+
+ActiveCell.Formula = "Open1"
+
+
+
+' melakukan copy paste & penghapusan angka di belakang titik (.) berdasarkan pada True atau False di kolom Integer Open
+
+Range("D2").Select
+
+If Range("C2").Value = "FALSE" Then
+
+ActiveCell.Formula = "Berhasil"
+
+
+Else
+
+
+ActiveCell.Formula = "GAGAL"
+
+End If
+
+
+
+
+
+End Sub
+
+
+```
+
+
 
 
 
