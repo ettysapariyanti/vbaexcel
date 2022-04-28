@@ -498,6 +498,75 @@ End Sub
 ```
 
 
+source code yang akan menjadi cikal bakal untuk pemurnian data harga saham PWON, ada fitur otomatis deteksi huruf di belakang tanda titik (.), apabila tidak ada tanda titik (.), maka akan langsung copy paste nilainya:
+
+```vba
+
+Sub Halaman5()
+
+Sheets("Sheet5").Select
+
+
+' Pembuatan kolom Harga Saham
+
+Range("A1").Select
+
+ActiveCell.Formula = "Harga Saham"
+
+Range("A2").Select
+
+ActiveCell.Formula = "15.569972"
+
+Range("A3").Select
+
+ActiveCell.Formula = "18.535681"
+
+Range("A4").Select
+
+ActiveCell.Formula = "100"
+
+Range("A5").Select
+
+ActiveCell.Formula = "200"
+
+
+
+
+' Pembuatan kolom Pengecekan Integer
+
+
+Range("B1").Select
+
+ActiveCell.Formula = "Periksa Kondisi Integer"
+
+Range("B2").Select
+
+ActiveCell.Formula = "=INT(A2)=A2"
+
+Selection.AutoFill Destination:=ActiveCell.Range("A1:A4"), Type:=xlFillDefault
+
+
+'Lakukan pemurnian harga saham
+
+Range("C1").Select
+
+ActiveCell.Formula = "Harga Pemurnian"
+
+Range("C2").Select
+
+ActiveCell.Formula = "=IF(B2=TRUE,A2,LEFT(A2,SEARCH(""."",A2)-1))"
+
+Selection.AutoFill Destination:=ActiveCell.Range("A1:A4"), Type:=xlFillDefault
+
+
+
+
+End Sub
+
+
+
+
+```
 
 
 
