@@ -569,6 +569,210 @@ End Sub
 ```
 
 
+Source code untuk copy data dan normalisasi angka untuk harga saham PWON :
+
+
+```vba
+
+Sub halaman6()
+
+' Harga yg akan siap dikirim ke Amibroker ada di Sheet6
+
+' Pilih sheet6 untuk membuat kolom tanggal
+
+Sheets("Sheet6").Select
+
+Range("A1").Select
+
+ActiveCell.Formula = "Tanggal"
+
+Range("A2:A4104").Select
+
+Selection.NumberFormat = "m/d/yyyy"
+
+
+
+' Pilih sheet PWONHarga untuk mengcopy paste tanggal
+
+Sheets("PWONJK").Select
+
+Range("A2:A4104").Select
+
+Selection.Copy
+
+
+
+
+' Piih lagi Sheet6 untuk mempaste nilai yg sudah di copy dari sheet PWONJK
+
+Sheets("Sheet6").Select
+
+Range("A2").Select
+
+Selection.PasteSpecial Paste:=xlPasteValues, operation:=xlNone, skipblanks:=False, Transpose:=False
+
+Columns("A:A").EntireColumn.AutoFit
+
+
+
+
+
+' Pilih sheet6 untuk membuat kolom HargaOpen
+
+Sheets("Sheet6").Select
+
+Range("B1").Select
+
+ActiveCell.Formula = "HargaOpen"
+
+
+
+
+' Pilih sheet PWONHarga untuk mengcopy paste Harga Open
+
+Sheets("PWONJK").Select
+
+Range("B2:B4104").Select
+
+Selection.Copy
+
+
+
+' Piih lagi Sheet6 untuk mempaste nilai yg sudah di copy dari sheet PWONJK
+
+Sheets("Sheet6").Select
+
+Range("B2").Select
+
+Selection.PasteSpecial Paste:=xlPasteValues, operation:=xlNone, skipblanks:=False, Transpose:=False
+
+Columns("B:B").EntireColumn.AutoFit
+
+
+' Pilih Sheet6
+
+' Buat kolom HargaOpenTrueFalse
+
+' Kemudian lakukan penyortiran data, untuk mengecek mana yg integer.
+
+' Kalau memang integer maka nilainya akan menjadi TRUE kalau bukan integer maka nilainya akan FALSE
+
+
+Sheets("Sheet6").Select
+
+Range("C1").Select
+
+ActiveCell.Formula = "HargaOpenTrueFalse"
+
+
+
+Range("C2").Select
+
+ActiveCell.Formula = "=INT(B2)=B2"
+
+Selection.AutoFill Destination:=ActiveCell.Range("A1:A4103"), Type:=xlFillDefault
+
+Columns("C:C").EntireColumn.AutoFit
+
+
+
+
+Sheets("Sheet6").Select
+
+Range("D1").Select
+
+ActiveCell.Formula = "HargaOpen2"
+
+Columns("D:D").EntireColumn.AutoFit
+
+
+Sheets("Sheet6").Select
+
+Range("D2").Select
+
+ActiveCell.Formula = "=IF(C2=TRUE,B2,LEFT(B2,SEARCH(""."",B2)-1))"
+
+Selection.AutoFill Destination:=ActiveCell.Range("A1:A4103"), Type:=xlFillDefault
+
+
+' Pilih sheet sheet6 kemudian buat kolom untuk harga High
+
+Sheets("Sheet6").Select
+
+Range("E1").Select
+
+ActiveCell.Formula = "HargaHigh"
+
+
+
+
+' Pilih sheet PWONJK untuk mengcopy paste harga High
+
+Sheets("PWONJK").Select
+
+Range("C2:C4104").Select
+
+Selection.Copy
+
+
+' Pilih lagi Sheet6 untuk mempaste nilai yg sudah di copy dari sheet PWONJK (Harga High)
+
+Sheets("Sheet6").Select
+
+Range("E2").Select
+
+Selection.PasteSpecial Paste:=xlPasteValues, operation:=xlNone, skipblanks:=False, Transpose:=False
+
+Columns("E:E").EntireColumn.AutoFit
+
+
+
+
+' Pilih sheet sheet6 kemudian buat kolom untuk Harga High True False
+
+Sheets("Sheet6").Select
+
+Range("F1").Select
+
+ActiveCell.Formula = "HargaHighTrueFalse"
+
+
+Range("F2").Select
+
+ActiveCell.Formula = "=INT(E2)=E2"
+
+Selection.AutoFill Destination:=ActiveCell.Range("A1:A4103"), Type:=xlFillDefault
+
+Columns("F:F").EntireColumn.AutoFit
+
+
+
+' Pilih sheet sheet6 kemudian buat kolom untuk Harga High 2
+
+Sheets("Sheet6").Select
+
+Range("G1").Select
+
+ActiveCell.Formula = "HargaHigh2"
+
+Columns("G:G").EntireColumn.AutoFit
+
+
+
+Sheets("Sheet6").Select
+
+Range("G2").Select
+
+ActiveCell.Formula = "=IF(F2=TRUE,E2,LEFT(E2,SEARCH(""."",E2)-1))"
+
+Selection.AutoFill Destination:=ActiveCell.Range("A1:A4103"), Type:=xlFillDefault
+
+
+
+End Sub
+
+
+```
 
 
 
