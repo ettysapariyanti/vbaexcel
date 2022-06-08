@@ -805,3 +805,51 @@ End Sub
 
 ```
 
+
+
+source code yg berhasil untuk menarik data dari database mariadb yg ada di server IDCloudHost di internet dan memasukannya ke dalam sheet di MS Excel:
+
+```vba
+
+    Sub testKoneksi()
+
+    ' Berhasil terkoneksi ke server mariadb di IDCloudHost
+
+    Dim koneksi As ADODB.Connection
+
+    Dim rekordset As ADODB.Recordset
+
+    Set koneksi = New ADODB.Connection
+    
+    koneksi.ConnectionString = "Driver={MariaDB ODBC 3.1 Driver};Server=127.0.0.1;Port=3306;Database=namadatabase;User=userdatabase;Password=passworddatabase;Option=3"
+    
+    koneksi.Open
+
+
+    ' Berhasil loading data ke sheet MS Excel dari Mariadb
+    
+    Set rekordset = New ADODB.Recordset
+    
+    rekordset.ActiveConnection = koneksi
+    
+    rekordset.Source = "antinasi1"
+    
+    rekordset.Open
+    
+    
+    Sheets("Sheet1").Select
+    
+    Range("A1").CopyFromRecordset rekordset
+    
+    
+    rekordset.Close
+    
+    koneksi.Close
+
+
+End Sub
+
+
+
+
+```
