@@ -777,3 +777,31 @@ End Sub
 
 
 
+
+Source Code untuk test koneksi VBA ke server MariaDB di Cloud menggunakan SSH Tunnel:
+
+```vba
+
+Sub testKoneksi()
+
+    Dim koneksi As ADODB.Connection
+
+    Dim rekordset As ADODB.Recordset
+
+    Set koneksi = New ADODB.Connection
+    
+    koneksi.ConnectionString = "Driver={MariaDB ODBC 3.1 Driver};Server=127.0.0.1;Port=3306;Database=namabasisdata;User=pengguna1;Password=password1;Option=3"
+    
+    koneksi.Open
+    
+    koneksi.Close
+    
+    MsgBox "Berhasil Terkoneksi"
+
+
+End Sub
+
+
+
+```
+
