@@ -853,3 +853,109 @@ End Sub
 
 
 ```
+
+
+
+source code untuk menampilkan nama kolom yg ada di tabel MariaDB ke worksheet MS Excel :
+
+```vba
+
+Sub tulisDataKeSheet(KumpulanHasil As ADODB.Recordset)
+
+' Membuat sub tersendiri khusus untuk menuliskan data
+
+
+Dim lembarKerja As Worksheet
+
+Dim namaKolom As ADODB.field
+
+Dim i As Integer
+
+
+
+Set lembarKerja = Worksheets("Sheet1")
+
+lembarKerja.Select
+
+
+' Meload nama kolom yg ada di tabel database ke Worksheet
+
+For Each namaKolom In KumpulanHasil.Fields
+
+    i = i + 1
+
+    lembarKerja.Cells(1, i).Value = namaKolom.Name
+    
+Next namaKolom
+
+
+
+Range("A2").CopyFromRecordset KumpulanHasil
+
+
+
+
+End Sub
+
+
+
+
+
+Sub testKoneksi2()
+
+
+' Parameter koneksi ke server mariadb di IDCloudHost
+
+Dim koneksi As ADODB.Connection
+
+Dim rekordset As ADODB.Recordset
+
+
+Set koneksi = New ADODB.Connection
+
+koneksi.ConnectionString = "Driver={MariaDB ODBC 3.1 Driver};Server=127.0.0.1;Port=3306;Database=namaDatabase;User=namaUser;Password=isiPassword;Option=3"
+
+koneksi.Open
+
+
+
+Set rekordset = New ADODB.Recordset
+
+rekordset.ActiveConnection = koneksi
+
+rekordset.Source = "makannasi1"
+
+rekordset.CursorType = adOpenForwardOnly
+
+rekordset.LockType = adLockReadOnly
+
+rekordset.Open
+
+
+
+tulisDataKeSheet rekordset
+
+
+
+
+
+rekordset.Close
+
+koneksi.Close
+
+
+
+
+End Sub
+
+
+
+
+
+```
+
+
+
+
+
+
